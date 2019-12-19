@@ -17,3 +17,5 @@ O
 src/com/company/kakao/num1.java,a\6\a6f4487f22e756dc455110dfef6b9b1029667eaa
 Q
 !src/com/company/queue/Q42587.java,b\4\b4266f67a0dc955d01f004355dfe6c9642a2c444
+N
+src/com/company/dfs/Q1829.java,3\c\3c80c04895bf4769da4deff19bcf1ff7553c798b

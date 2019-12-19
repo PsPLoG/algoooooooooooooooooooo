@@ -1,5 +1,5 @@
 
->squid:S2189""Add an end condition to this loop.(οÿÿÿÿÿ
-Fsquid:S1172"/Remove this unused method parameter "location".(Χμ
-usquid:S3012
-"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(“³ϋιωÿÿÿÿ
+8squid:S1220""Move this file to a named package.8ακªσπ-
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¥•ΦΟ8ακªσπ-
+nsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¶‡Ζάόÿÿÿÿ8ακªσπ-
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ξ―ΤΙ8ακªσπ-
