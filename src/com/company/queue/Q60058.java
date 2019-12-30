@@ -12,7 +12,6 @@ public class Q60058 {
 
     public static String solution(String p) {
         String answer = "";
-
         return sort(p);
     }
 
