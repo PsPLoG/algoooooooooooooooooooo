@@ -56,6 +56,5 @@ public class Q42888 {
 
     public static void main(String[] args) {
 
-        solution()
     }
 }
