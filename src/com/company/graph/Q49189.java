@@ -16,6 +16,9 @@ public class Q49189 {
     }
 
     public static void surf(int[][] preMap, int preNode, int curNode, int deep, int target) {
+        if (hashMap.getOrDefault(target, 100) < deep)
+            return;
+
         if (curNode == target) {
             System.out.println("found"+ target+"pre :"+preNode+" cur:"+curNode + " deeep"+deep);
             if (hashMap.getOrDefault(target, 100) > deep)
