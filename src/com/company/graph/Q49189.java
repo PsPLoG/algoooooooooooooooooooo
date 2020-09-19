@@ -1,11 +1,13 @@
 package com.company.graph;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Q49189 {
     static int num;
     static HashMap<Integer, Integer> hashMap = new HashMap<>();
-
+    static LinkedList<LinkedList<Integer>> map;
     public static void printMap(int[][] arr) {
         for (int i = 0; i < num; i++) {
             for (int j = 0; j < num; j++) {
@@ -15,33 +17,21 @@ public class Q49189 {
         }
     }
 
-    public static void surf(int[][] preMap, int preNode, int curNode, int deep, int target) {
-        if (hashMap.getOrDefault(target, 100) < deep)
+    public static void surf(HashSet<Integer> visit, int preNode, int curNode, int deep, int target) {
+        HashSet<Integer> test = new HashSet<>();
+        visit.addAll(visit);
+        if (hashMap.getOrDefault(target, num) < deep)
             return;
 
         if (curNode == target) {
-            System.out.println("found"+ target+"pre :"+preNode+" cur:"+curNode + " deeep"+deep);
-            if (hashMap.getOrDefault(target, 100) > deep)
+            //System.out.println("found" + (1 + target) + "pre :" + preNode + " cur:" + curNode + " deeep" + deep);
+            if (hashMap.getOrDefault(target, num) > deep)
                 hashMap.put(target, deep);
         }
-        int[][] map = new int[num][num];
-        for (int i = 0; i < num; i++) {
-            for (int j = 0; j < num; j++) {
-                map[i][j] = preMap[i][j];
-            }
-        }
-
-        for (int i = 0; i < num; i++) {
-            map[preNode][i] = 0;
-            map[i][preNode] = 0;
-
-
-
-        }
-        for (int i = 0; i < num; i++) {
-            if (map[curNode][i] == 1 && i != curNode) {
-                surf(map, curNode, i, deep+1, target);
-            }
+        for (int i = 0; i < map.get(curNode).size(); i++) {
+            int find = map.get(curNode).get(i);
+            if (find != preNode && test.contains(find) == false)
+                surf(test, curNode, map.get(curNode).get(i), deep + 1, target);
         }
 
 
@@ -50,25 +40,28 @@ public class Q49189 {
     public static int solution(int n, int[][] edge) {
         int answer = 0;
 
-        int[][] map = new int[n][n];
+        map = new LinkedList<>();
         num = n;
+        for (int i = 0; i < n; i++) {
+            map.add(new LinkedList<>());
+        }
         for (int i = 0; i < edge.length; i++) {
-            map[edge[i][0] - 1][edge[i][1] - 1] = 1;
-            map[edge[i][1] - 1][edge[i][0] - 1] = 1;
+            int x =edge[i][0] - 1;
+            int y =edge[i][1] - 1;
+            map.get(x).add(y);
+            map.get(y).add(x);
         }
 
-        for (int i = 1; i < n; i++) {
-            if (map[0][i] == 1) {
-                for(int j =0;j<n;j++){
-                    surf(map, 0, i, 1, j);
-                }
+
+        for (int i = 0; i < map.get(0).size(); i++) {
+            for (int j = 1; j < n; j++) {
+                surf(new HashSet<>(), 0, map.get(0).get(i), 1, j);
             }
         }
         int max = 0;
         int count = 0;
         for (int e : hashMap.keySet()) {
             int current = hashMap.get(e);
-            System.out.println(current+" "+(e+1));
             if (current > max) {
                 max = current;
             }
